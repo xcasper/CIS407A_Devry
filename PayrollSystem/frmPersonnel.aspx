@@ -10,8 +10,9 @@
     <form id="form1" runat="server">
     <div style="text-align: center">
     
-        <asp:Image ID="Image1" runat="server" 
-            ImageUrl="~/CoolBiz_Productions_logo.JPG" />
+        <asp:ImageButton ID="ImageButton1" runat="server" 
+            ImageUrl="~/CoolBiz_Productions_logo.JPG" 
+            PostBackUrl="~/frmMain.aspx" />
         <asp:Panel ID="Panel1" runat="server" Height="250px" Width="300px">
             <asp:Label ID="Label2" runat="server" Text="First Name:"></asp:Label>
             <asp:TextBox ID="txtFirstName" runat="server"></asp:TextBox>
@@ -30,11 +31,11 @@
             <br />
             <asp:Button ID="btnSubmit" runat="server" Text="Submit" 
                 PostBackUrl="~/frmPersonalVerified.aspx" />
-            <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+            <asp:Button ID="btnCancel" runat="server" Text="Cancel"
+                PostBackUrl="~/frmMain.aspx" />
             <br />
             <br />
         </asp:Panel>
-    
     </div>
     </form>
 </body>

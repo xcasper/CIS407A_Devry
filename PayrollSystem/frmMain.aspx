@@ -12,7 +12,7 @@
     
         <asp:ImageButton ID="ImageButton3" runat="server" 
             ImageUrl="~/CoolBiz_Productions_logo.JPG" 
-            PostBackUrl="~/frmSalaryCalculator.aspx" />
+            PostBackUrl="~/frmMain.aspx" />
         <br />
         <asp:LinkButton ID="LinkButton1" runat="server" 
             PostBackUrl="~/frmSalaryCalculator.aspx">Annual Salary Calculator</asp:LinkButton>

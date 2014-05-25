@@ -8,22 +8,31 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
+        <div style="text-align: center">
+
+        <asp:ImageButton ID="ImageButton3" runat="server" 
+            ImageUrl="~/CoolBiz_Productions_logo.JPG" 
+            PostBackUrl="~/frmMain.aspx" />
+
+            <br />
+
+            <asp:Label ID="Label4" runat="server" Text="Annual Hours:"></asp:Label>
+
+            <asp:TextBox ID="txtAnnualHours" runat="server"></asp:TextBox>
     
-        <asp:Label ID="Label4" runat="server" Text="Annual Hours:"></asp:Label>
-        <asp:TextBox ID="txtAnnualHours" runat="server"></asp:TextBox>
+            <br />
     
-    </div>
-    <asp:Label ID="Label2" runat="server" Text="Rate:"></asp:Label>
-    <asp:TextBox ID="txtRate" runat="server" ontextchanged="TextBox2_TextChanged" 
-        style="margin-bottom: 0px"></asp:TextBox>
-    <p>
-        <asp:Button ID="Button1" runat="server" onclick="Button1_Click" 
-            Text="Calculate Salary" />
-    </p>
-    <p>
-        <asp:Label ID="lblSalary" runat="server" Text="$"></asp:Label>
-    </p>
+            <asp:Label ID="Label2" runat="server" Text="Rate:" width="86px"></asp:Label>
+            <asp:TextBox ID="txtRate" runat="server" ontextchanged="TextBox2_TextChanged" 
+                style="margin-bottom: 0px"></asp:TextBox>
+            <p>
+                <asp:Button ID="Button1" runat="server" onclick="Button1_Click" 
+                    Text="Calculate Salary" />
+            </p>
+            <p>
+                <asp:Label ID="lblSalary" runat="server" Text="$"></asp:Label>
+            </p>
+        </div>
     </form>
 </body>
 </html>

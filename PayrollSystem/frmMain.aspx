@@ -16,16 +16,21 @@
         <br />
         <asp:LinkButton ID="LinkButton1" runat="server" 
             PostBackUrl="~/frmSalaryCalculator.aspx">Annual Salary Calculator</asp:LinkButton>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;
         <asp:ImageButton ID="ImageButton1" runat="server" Height="50px" 
             ImageUrl="~/payroll.jpg" PostBackUrl="~/frmSalaryCalculator.aspx" 
             Width="60px" />
         <br />
         <asp:LinkButton ID="LinkButton2" runat="server" 
-            PostBackUrl="~/frmPersonnel.aspx">Add New Employee</asp:LinkButton>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            PostBackUrl="~/frmPersonnel.aspx" width="150px">Add New Employee</asp:LinkButton>
+&nbsp;&nbsp;&nbsp;
         <asp:ImageButton ID="ImageButton2" runat="server" Height="50px" 
             ImageUrl="~/new_employee.jpg" PostBackUrl="~/frmPersonnel.aspx" Width="60px" />
+    
+        <br />
+        <asp:LinkButton ID="LinkButton3" runat="server" PostBackUrl="~/frmUserActivity.aspx" width="150px">User Activity</asp:LinkButton>
+&nbsp;&nbsp;&nbsp;
+        <asp:ImageButton ID="ImageButton4" runat="server" Height="50px" ImageUrl="~/userActivity.jpg" Width="60px" />
     
     </div>
     </form>

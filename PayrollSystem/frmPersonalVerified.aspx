@@ -5,15 +5,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title>Untitled Page</title>
+    <style type="text/css">
+        .auto-style1 {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-    
+    <div class="auto-style1">
+        <asp:ImageButton ID="ImageButton3" runat="server" 
+            ImageUrl="~/CoolBiz_Productions_logo.JPG" 
+            PostBackUrl="~/frmMain.aspx" />
+        <br />
         <asp:Label ID="Label1" runat="server" Text="Information to Submit"></asp:Label>
         <br />
         <asp:TextBox ID="txtVerifiedInfo" runat="server" Height="80px" 
-            TextMode="MultiLine" Width="400px"></asp:TextBox>
+            TextMode="MultiLine" Width="400px" OnTextChanged="txtVerifiedInfo_TextChanged"></asp:TextBox>
     
     </div>
     </form>

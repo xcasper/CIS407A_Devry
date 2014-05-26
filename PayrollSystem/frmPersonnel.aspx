@@ -29,11 +29,11 @@
             <asp:Label ID="Label5" runat="server" Text="End Date:" width="71px"></asp:Label>
             <asp:TextBox ID="txtEndDate" runat="server"></asp:TextBox>
             <br />
-            <asp:Button ID="btnSubmit" runat="server" Text="Submit" 
-                PostBackUrl="~/frmPersonalVerified.aspx" />
+            <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
             <asp:Button ID="btnCancel" runat="server" Text="Cancel"
                 PostBackUrl="~/frmMain.aspx" />
             <br />
+            <asp:Label ID="lblError" runat="server"></asp:Label>
             <br />
         </asp:Panel>
     </div>

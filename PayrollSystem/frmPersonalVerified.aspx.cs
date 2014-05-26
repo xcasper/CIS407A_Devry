@@ -16,10 +16,14 @@ public partial class frmPersonnelVerified : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         //Grab all values from the frmPersonnel form and then display them in the text box.
-        txtVerifiedInfo.Text = Request["txtFirstName"] +
-            "\n" + Request["txtLastName"] +
-            "\n" + Request["txtPayRate"] +
-            "\n" + Request["txtStartDate"] +
-            "\n" + Request["txtEndDate"];
+        txtVerifiedInfo.Text = Session["txtFirstName"].ToString() +
+            "\n" + Session["txtLastName"].ToString() +
+            "\n" + Session["txtPayRate"].ToString() +
+            "\n" + Session["txtStartDate"].ToString() +
+            "\n" + Session["txtEndDate"].ToString();
+    }
+    protected void txtVerifiedInfo_TextChanged(object sender, EventArgs e)
+    {
+
     }
 }

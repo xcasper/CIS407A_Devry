@@ -21,6 +21,24 @@ public partial class frmPersonnelVerified : System.Web.UI.Page
             "\n" + Session["txtPayRate"].ToString() +
             "\n" + Session["txtStartDate"].ToString() +
             "\n" + Session["txtEndDate"].ToString();
+
+        //Saves the personnel data to the database
+        if (clsDataLayer.SavePersonnel(Server.MapPath("PayrollSystem_DB.mdb"), 
+            Session["txtFirstName"].ToString(),
+            Session["txtLastName"].ToString(),
+            Session["txtPayRate"].ToString(),
+            Session["txtStartDate"].ToString(),
+            Session["txtEndDate"].ToString()))
+        {
+            txtVerifiedInfo.Text = txtVerifiedInfo.Text +
+                                  "\nThe information was successfully saved!";
+
+        }
+        else
+        {
+            txtVerifiedInfo.Text = txtVerifiedInfo.Text +
+                                 "\nThe information was NOT saved.";
+        }
     }
     protected void txtVerifiedInfo_TextChanged(object sender, EventArgs e)
     {

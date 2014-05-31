@@ -30,8 +30,8 @@
             <asp:TextBox ID="txtEndDate" runat="server"></asp:TextBox>
             <br />
             <asp:Button ID="btnSubmit" runat="server" Text="Submit" OnClick="btnSubmit_Click" />
-            <asp:Button ID="btnCancel" runat="server" Text="Cancel"
-                PostBackUrl="~/frmMain.aspx" />
+            <asp:Button ID="btnCancel" runat="server" Text="Cancel" PostBackUrl="~/frmMain.aspx" />
+            <asp:Button ID="btnViewPersonnel" runat="server" Text="View Personnel" PostBackUrl="~/frmViewPersonnel.aspx" />
             <br />
             <asp:Label ID="lblError" runat="server"></asp:Label>
             <br />

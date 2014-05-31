@@ -23,6 +23,9 @@
         <asp:TextBox ID="txtVerifiedInfo" runat="server" Height="80px" 
             TextMode="MultiLine" Width="400px" OnTextChanged="txtVerifiedInfo_TextChanged"></asp:TextBox>
     
+        <br />
+        <asp:Button ID="btnViewPersonnel" runat="server" PostBackUrl="~/frmViewPersonnel.aspx" Text="View Personnel" />
+
     </div>
     </form>
 </body>

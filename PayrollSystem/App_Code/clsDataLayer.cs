@@ -13,6 +13,79 @@ using System.Data;
 /// </summary>
 public class clsDataLayer
 {
+
+    // This function saves the personnel data
+    public static bool SavePersonnel(string Database, string FirstName, string LastName,
+                                     string PayRate, string StartDate, string EndDate)
+    {
+
+        bool recordSaved;
+
+        try
+        {
+            //Declares and instantiates a new OleDBConnection
+            OleDbConnection conn = new OleDbConnection("PROVIDER=Microsoft.Jet.OLEDB.4.0;" +
+                                                       "Data Source=" + Database);
+            conn.Open();
+            OleDbCommand command = conn.CreateCommand();
+            string strSQL;
+
+            //Instantiates strSQL with the database insert string, for personnel, for use later
+            strSQL = "Insert into tblPersonnel " +
+                     "(FirstName, LastName, PayRate, StartDate, EndDate) values ('" +
+                     FirstName + "', '" + LastName + "', " + PayRate + ", '" + StartDate +
+                    "', '" + EndDate + "')";
+            //Determines how the command text is interpreted
+            command.CommandType = CommandType.Text;
+
+            command.CommandText = strSQL;
+            //executes a sql statement against the connect and returns # of rows affected
+            command.ExecuteNonQuery();
+            //Close the connection
+            conn.Close();
+            recordSaved = true;
+        }
+        catch (Exception ex)
+        {
+            recordSaved = false;
+
+        }
+
+        return recordSaved;
+    }
+
+    //Thi function gets all User Activity from the tblPersonnel
+    public static dsPersonnel dsGetPersonnel(string Database, string strSearch)
+    {
+        dsPersonnel DS;
+        OleDbConnection sqlConn;
+        OleDbDataAdapter sqlDA;
+
+        //Creates the connection to the database
+        sqlConn = new OleDbConnection("PROVIDER=Microsoft.Jet.OLEDB.4.0;" +
+            "Data Source=" + Database);
+
+        //Checks if strSearch is empty or not. If not it runs the adapter with a where statement
+        if(strSearch == null || strSearch.Trim().Length == 0)
+        {
+            //Instantiates new data adapter
+            sqlDA = new OleDbDataAdapter("select * from tblPersonnel", sqlConn);
+        }
+        else
+        {
+            //Instantiates new data adapter 
+            sqlDA = new OleDbDataAdapter("select * from tblPersonnel where LastName = '" + strSearch + "'", sqlConn);
+        }
+        
+        //Instantiates new dsUserActivity
+        DS = new dsPersonnel();
+
+        //Adds rows to te database and refreshes rows already in database
+        sqlDA.Fill(DS.tblPersonnel);
+
+        
+        return DS;
+    }
     // This function gets the user activity from the tblUserActivity
     public static dsUserActivity GetUserActivity(string Database)
     {

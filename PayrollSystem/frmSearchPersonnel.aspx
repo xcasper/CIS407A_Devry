@@ -13,7 +13,7 @@
             ImageUrl="~/CoolBiz_Productions_logo.JPG" 
             PostBackUrl="~/frmMain.aspx" />
         <br />
-        <asp:Label ID="Label1" runat="server" Text="Searcg for employee by last name:"></asp:Label>
+        <asp:Label ID="Label1" runat="server" Text="Search for employee by last name:"></asp:Label>
         <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
         <asp:Button ID="btnSearch" runat="server" Text="Search" PostBackUrl="~/frmViewPersonnel.aspx" />
     </div>

@@ -26,43 +26,13 @@ public partial class frmPersonnel : System.Web.UI.Page
         txtStartDate.BackColor = System.Drawing.Color.White;
         txtEndDate.BackColor = System.Drawing.Color.White;
 
-        //Check to see which boxes are null or empty(spaces)
-        if (string.IsNullOrEmpty(txtFirstName.Text) || txtFirstName.Text.Trim().Length == 0)
-        {
-            txtFirstName.BackColor = System.Drawing.Color.Yellow;
-            lblError.Text += "First Name May Not Be Empty.";
-        }
-
-        if (string.IsNullOrEmpty(txtLastName.Text) || txtLastName.Text.Trim().Length == 0)
-        {
-            txtLastName.BackColor = System.Drawing.Color.Yellow;
-            lblError.Text += "Last Name May Not Be Empty.";
-        }
-
-        if (string.IsNullOrEmpty(txtPayRate.Text) || txtPayRate.Text.Trim().Length == 0)
-        {
-            txtPayRate.BackColor = System.Drawing.Color.Yellow;
-            lblError.Text += "Pay Rate May Not Be Empty.";
-        }
-
-        if (string.IsNullOrEmpty(txtStartDate.Text) || txtStartDate.Text.Trim().Length == 0)
-        {
-            txtStartDate.BackColor = System.Drawing.Color.Yellow;
-            lblError.Text += "Start Date May Not Be Empty.";
-        }
-
-        if (string.IsNullOrEmpty(txtEndDate.Text) || txtEndDate.Text.Trim().Length == 0)
-        {
-            txtEndDate.BackColor = System.Drawing.Color.Yellow;
-            lblError.Text += "End Date May Not Be Empty.";
-        }
-
-        //Attempt to assign entered date to DateTime variable and then compare it to make sure the end date comes on the same day, or after, the start date.
+        //Attempt to assign entered date to DateTime variable
         try
         {
             DateTime startDate = DateTime.Parse(txtStartDate.Text);
             DateTime endDate = DateTime.Parse(txtEndDate.Text);
 
+            //compare it to make sure the end date comes on the same day, or after, the start date.
             if(DateTime.Compare(startDate, endDate) > 0)
             {
                 lblError.Text += "Start Date Must Be Before End Date";

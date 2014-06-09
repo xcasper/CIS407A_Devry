@@ -43,6 +43,14 @@
 &nbsp;&nbsp;&nbsp;
         <asp:ImageButton ID="ImageButton6" runat="server" Height="50px" ImageUrl="~/searchPersonnel.jpg" Width="60px" PostBackUrl="~/frmSearchPersonnel.aspx" />
     
+        <br />
+        <asp:LinkButton ID="LinkButton6" runat="server" width="200px" PostBackUrl="~/frmEditPersonnel.aspx" style="margin-bottom: 0px">Edit Personnel</asp:LinkButton>
+&nbsp;&nbsp;&nbsp;
+        <asp:ImageButton ID="ImageButton7" runat="server" Height="50px" ImageUrl="~/editPersonnel.jpg" Width="60px" PostBackUrl="~/frmEditPersonnel.aspx" />
+    
+        <br />
+        <br />
+    
     </div>
     </form>
 </body>

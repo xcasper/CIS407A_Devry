@@ -21,6 +21,9 @@ public class clsDataLayer
 
         bool recordSaved;
 
+        //Declares new OleDbTransaction for updating database and instantiates it as null
+        OleDbTransaction myTransaction = null;
+
         try
         {
             //Declares and instantiates a new OleDBConnection
@@ -30,23 +33,48 @@ public class clsDataLayer
             OleDbCommand command = conn.CreateCommand();
             string strSQL;
 
-            //Instantiates strSQL with the database insert string, for personnel, for use later
-            strSQL = "Insert into tblPersonnel " +
-                     "(FirstName, LastName, PayRate, StartDate, EndDate) values ('" +
-                     FirstName + "', '" + LastName + "', " + PayRate + ", '" + StartDate +
-                    "', '" + EndDate + "')";
-            //Determines how the command text is interpreted
-            command.CommandType = CommandType.Text;
+            //Sets myTransaction to a new transaction using the db connection
+            myTransaction = conn.BeginTransaction();
+            command.Transaction = myTransaction;
 
+            //Instantiates strSQL with the database insert string, for use later
+            strSQL = strSQL = "Insert into tblPersonnel " +
+                     "(FirstName, LastName) values ('" +
+                     FirstName + "', '" + LastName + "')";
+
+            //Determines how the command text is interpreted and assigns the insert string to it
+            command.CommandType = CommandType.Text;
             command.CommandText = strSQL;
+
             //executes a sql statement against the connect and returns # of rows affected
             command.ExecuteNonQuery();
+
+            //Sets strSQL to database update string, for use later
+            strSQL = "Update tblPersonnel " +
+                     "Set PayRate=" + PayRate + ", " +
+                     "StartDate='" + StartDate + "', " +
+                     "EndDate='" + EndDate + "' " +
+                     "Where ID=(Select Max(ID) From tblPersonnel)";
+
+            //Determines how the command text is interpreted and assigns the update string to it
+            command.CommandType = CommandType.Text;
+            command.CommandText = strSQL;
+
+            //executes a sql statement against the connect and returns # of rows affected
+            command.ExecuteNonQuery();
+
+            //Commits all the changes from the transaction to the database to make it show on the live database.
+            myTransaction.Commit();
+
             //Close the connection
             conn.Close();
             recordSaved = true;
         }
         catch (Exception ex)
         {
+            //Takes the database back to the previous state if an error occurs
+            myTransaction.Rollback();
+
             recordSaved = false;
 
         }
@@ -54,7 +82,7 @@ public class clsDataLayer
         return recordSaved;
     }
 
-    //Thi function gets all User Activity from the tblPersonnel
+    //This function gets all User Activity from the tblPersonnel
     public static dsPersonnel dsGetPersonnel(string Database, string strSearch)
     {
         dsPersonnel DS;

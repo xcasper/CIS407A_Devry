@@ -13,6 +13,88 @@ using System.Data;
 /// </summary>
 public class clsDataLayer
 {
+    // This function saves the personnel data
+    public static bool SaveUserLogin(string Database, string username, string password, string securityLevel)
+    {
+
+        bool recordSaved;
+
+        //Declares new OleDbTransaction for updating database and instantiates it as null
+        OleDbTransaction myTransaction = null;
+
+        try
+        {
+            //Declares and instantiates a new OleDBConnection
+            OleDbConnection conn = new OleDbConnection("PROVIDER=Microsoft.Jet.OLEDB.4.0;" +
+                                                       "Data Source=" + Database);
+            conn.Open();
+            OleDbCommand command = conn.CreateCommand();
+            string strSQL;
+
+            //Sets myTransaction to a new transaction using the db connection
+            myTransaction = conn.BeginTransaction();
+            command.Transaction = myTransaction;
+
+            //Instantiates strSQL with the database insert string, for use later
+            strSQL = strSQL = "Insert into tblUserLogin " +
+                     "(UserName, UserPassword, SecurityLevel) values ('" +
+                     username + "', '" + password + "', '" + securityLevel + "')";
+
+            //Determines how the command text is interpreted and assigns the insert string to it
+            command.CommandType = CommandType.Text;
+            command.CommandText = strSQL;
+
+            //executes a sql statement against the connect and returns # of rows affected
+            command.ExecuteNonQuery();
+
+            //Commits all the changes from the transaction to the database to make it show on the live database.
+            myTransaction.Commit();
+
+            //Close the connection
+            conn.Close();
+
+            recordSaved = true;
+        }
+        catch (Exception ex)
+        {
+            //Takes the database back to the previous state if an error occurs
+            myTransaction.Rollback();
+
+            recordSaved = false;
+
+        }
+
+        return recordSaved;
+    }
+    // This function verifies a user in the tblUser table
+    public static dsUser VerifyUser(string Database, string UserName, string UserPassword)
+    {
+        //Declare local variables
+        dsUser DS;
+        OleDbConnection sqlConn;
+        OleDbDataAdapter sqlDA;
+
+        //Instantiates the connection to the database
+        sqlConn = new OleDbConnection("PROVIDER=Microsoft.Jet.OLEDB.4.0;" +
+                                      "Data Source=" + Database);
+
+        //Instantiates a new data adapter and checks db username and password for verification
+        sqlDA = new OleDbDataAdapter("Select SecurityLevel from tblUserLogin " +
+                                      "where UserName like '" + UserName + "' " +
+                                      "and UserPassword like '" + UserPassword + "'", sqlConn);
+
+        //Instantiates a new dsUser for returning the value, if any,
+        //from querying the database to check the username and password
+        //of the user
+        DS = new dsUser();
+
+        //Adds rows to the database and refreshes rows already in database
+        sqlDA.Fill(DS.tblUserLogin);
+
+        //returns the user
+        return DS;
+
+    }
 
     // This function saves the personnel data
     public static bool SavePersonnel(string Database, string FirstName, string LastName,

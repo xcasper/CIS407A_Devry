@@ -9,6 +9,23 @@ public partial class frmPersonnel : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        //Sets the submit button, on the add new employee page, to visible(default)
+        //if the user has administrator security level
+        if (Session["SecurityLevel"] == "A")
+        {
+
+            btnSubmit.Visible = true;
+
+        //Disables, by making invisible, and unclickable,
+        //the submit button if the user does not have
+        //administrator security privaleges.
+        }
+        else
+        {
+
+            btnSubmit.Visible = false;
+        }
+
         //Sets text color for the error label to red
         //In page load so that the code is not rerun on each button click.
         lblError.ForeColor = System.Drawing.Color.Red;

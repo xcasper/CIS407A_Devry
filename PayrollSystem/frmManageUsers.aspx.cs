@@ -9,6 +9,11 @@ public partial class frmManageUsers : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        //If user does not have proper security level then sends them to login page
+        if (Session["SecurityLevel"] != "A")
+        {
+            Server.Transfer("frmLogin.aspx", true);
+        }
 
     }
     protected void btnAddUser_Click(object sender, EventArgs e)

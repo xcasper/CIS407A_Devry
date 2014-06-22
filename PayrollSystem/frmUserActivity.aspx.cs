@@ -9,6 +9,12 @@ public partial class frmUserActivity : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        //If user does not have proper security level then sends them to login page
+        if (Session["SecurityLevel"] != "A")
+        {
+            Server.Transfer("frmLogin.aspx", true);
+        }
+
         if (!Page.IsPostBack)
         {
             // Declares the DataSet
